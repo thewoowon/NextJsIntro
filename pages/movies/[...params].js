@@ -1,11 +1,21 @@
 import { useRouter } from "next/router";
 
-export default function Detail(){
+export default function Detail({params}){
  const router =  useRouter();
- console.log(router);
+const [titile, id] = params || [];
+ 
  return (
     <div>
-        <h4>{router.query.title || "Loading..."}</h4>
+        <h4>{titile || "Loading..."}</h4>
     </div>
  )
+}
+
+
+export function getServerSideProps({params:{params}}){
+    return {
+        props:{
+            params,
+        },
+    }
 }
